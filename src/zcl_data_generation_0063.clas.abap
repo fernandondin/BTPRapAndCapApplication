@@ -41,13 +41,17 @@ CONSTANTS:
 * HEADER
 *---------------------------------------------------
 
-    lv_header_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    TRY.
+        lv_header_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+      CATCH cx_uuid_error.
+        "handle exception
+    ENDTRY.
 
     CLEAR ls_header.
 
     ls_header-client      = lc_client.
     ls_header-header_uuid = lv_header_uuid.
-    ls_header-id          = |ORD{ 1000 + lv_index }|.
+    ls_header-header_id          = |ORD{ 1000 + lv_index }|.
 
     CASE lv_index MOD 10.
 

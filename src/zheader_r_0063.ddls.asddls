@@ -5,7 +5,7 @@ define root view entity ZHEADER_R_0063 as select from zheader_0063_a
 composition [0..*] of ZITEM_R_0063          as _Item
 {
     key header_uuid as HeaderUUID,
-    id as Id,
+    header_id as HeaderID,
     email as Email,
     fname as Fname,
     lname as Lname,

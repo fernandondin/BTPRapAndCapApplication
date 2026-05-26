@@ -1,0 +1,64 @@
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName: 'Header',
+                     typeNamePlural: 'Headers',
+                     title: { type: #STANDARD,
+                              value: 'HeaderID' } },
+        presentationVariant: [{ sortOrder: [{ by: 'HeaderID',
+                                              direction: #DESC }],
+                                visualizations: [{ type: #AS_LINEITEM }] }] }
+annotate entity ZHEADER_C_0063
+    with 
+{
+    @UI.facet: [{ id: 'Header',
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                label: 'Header',
+                position: 10 },
+
+                { id: 'Item',
+                  purpose: #STANDARD,
+                  type: #LINEITEM_REFERENCE,
+                  position: 20,
+                  targetElement: '_Item' }]
+
+  @UI.hidden: true
+  HeaderUUID;
+  
+  @UI: { lineItem: [{ position: 10,
+                      importance: #HIGH } ],
+
+         selectionField: [{ position: 10 }] }         
+    HeaderID;  
+    @UI: { lineItem: [{  position:  20, importance:  #HIGH}],
+    identification: [{ position: 20 }],
+    selectionField: [{ position: 20 }] }
+    Email;
+    @UI: { lineItem: [{  position:  30, importance:  #HIGH}],
+       identification: [{ position: 30 }],
+       selectionField: [{ position: 30 }] }
+    Fname;
+    
+  @UI: { lineItem: [{  position:  40, importance:  #MEDIUM }],
+       identification: [{ position: 40 }] }
+    Lname;
+    @UI: { lineItem: [{  position:  50, importance:  #MEDIUM }],
+        identification: [{ position: 50 }] }
+    Country;
+    @UI: { lineItem: [{  position:  60, importance:  #HIGH }],
+        identification: [{ position: 60 }] }
+    CreatedOn;
+    @UI: { lineItem: [{  position:  70, importance:  #HIGH }],
+          identification: [{ position: 70 }] }
+    DeliveryDate;
+    @UI: { lineItem: [{  position:  80, importance:  #MEDIUM }],
+           identification: [{ position: 80 }] }
+    OrderStatus;
+    @UI: { lineItem: [{  position:  90, importance:  #MEDIUM }],
+           identification: [{ position: 90 }] }
+    ImageUrl;   
+    @UI.hidden: true
+    LocalLastChangedAt;
+    @UI.hidden: true
+    LastChangedAt;
+    
+}

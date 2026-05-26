@@ -1,0 +1,82 @@
+managed;
+strict ( 2 );
+with draft;
+define behavior for ZHEADER_R_0063 alias Header
+implementation in class zbp_header_r_0063 unique
+persistent table zheader_0063_a
+draft table zheader_0063_d
+lock master
+total etag LastChangedAt
+etag master LocalLastChangedAt
+authorization master ( instance, global )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _Item { create ( features : instance, authorization : update ); with draft; }
+  field ( numbering : managed, readonly ) HeaderUUID;
+  field ( readonly ) headerID,
+  LocalLastChangedAt;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume with additional implementation;
+
+  draft determine action Prepare
+  {
+
+  }
+  mapping for zheader_0063_a
+    {
+      HeaderUUID         = header_uuid;
+      headerID           = header_id;
+      Email              = email;
+      Fname              = fname;
+      Lname              = lname;
+      country            = country;
+      createdon          = created_on;
+      DeliveryDate       = delivery_date;
+      orderstatus        = order_status;
+      imageurl           = image_url;
+      locallastchangedat = local_last_changed_at;
+      lastchangedat      = last_changed_at;
+    }
+
+}
+
+define behavior for ZITEM_R_0063 //alias <alias_name>
+persistent table zitem_0063_a
+draft table zitem_0063_d
+lock dependent by _Header
+authorization dependent by _Header
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  association _Header { with draft; }
+  field ( numbering : managed, readonly ) ItemUUID;
+  field ( readonly ) HeaderUUID;
+
+
+  mapping for zitem_0063_a
+    {
+      HeaderUUID         = parent_uuid;
+      ItemUUID           = item_uuid;
+      ItemID             = item_id;
+      Name               = name;
+      description        = description;
+      ReleaseDate        = release_date;
+      DiscontinuedDate   = discontinued_date;
+      Price              = price;
+      Height             = height;
+      Width              = width;
+      Depth              = depth;
+      Quantity           = quantity;
+      UnitOfMeasure      = unit_of_measure;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+
+}

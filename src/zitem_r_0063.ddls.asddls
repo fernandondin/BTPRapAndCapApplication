@@ -8,6 +8,7 @@ association to parent ZHEADER_R_0063    as _Header on  $projection.HeaderUUID = 
 {
     key item_uuid as ItemUUID,
     parent_uuid as HeaderUUID,
+    item_id as ItemID,
     name as Name,
     description as Description,
     release_date as ReleaseDate,
@@ -20,6 +21,8 @@ association to parent ZHEADER_R_0063    as _Header on  $projection.HeaderUUID = 
     depth as Depth,
     quantity as Quantity,
     unit_of_measure as UnitOfMeasure,
+    
+    
     @Semantics.systemDateTime.localInstanceLastChangedAt: true
     local_last_changed_at as LocalLastChangedAt,
     @Semantics.systemDateTime.lastChangedAt: true
